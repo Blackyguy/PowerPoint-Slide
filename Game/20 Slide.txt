@@ -1,0 +1,30 @@
+Sub CreateGamePresentation()
+    Dim pptApp As Object
+    Dim pptPresentation As Object
+    Dim pptSlide As Object
+    Dim i As Integer
+    
+    ' Create PowerPoint application and new presentation
+    Set pptApp = CreateObject("PowerPoint.Application")
+    Set pptPresentation = pptApp.Presentations.Add
+    
+    ' Loop to create 20 slides
+    For i = 1 To 20
+        ' Add a new slide
+        Set pptSlide = pptPresentation.Slides.Add(i, 11) ' 11 represents the slide layout (Title and Content)
+        
+        ' Set slide title
+        pptSlide.Shapes.Title.TextFrame.TextRange.Text = "Slide " & i & " Title"
+        
+        ' Set slide content
+        pptSlide.Shapes(2).TextFrame.TextRange.Text = "Content related to games on slide " & i
+    Next i
+    
+    ' Show PowerPoint application
+    pptApp.Visible = True
+    
+    ' Clean up objects
+    Set pptSlide = Nothing
+    Set pptPresentation = Nothing
+    Set pptApp = Nothing
+End Sub
